@@ -1,0 +1,542 @@
+// src/components/Landing.jsx
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Menu, 
+  X, 
+  Phone,
+  Mail, 
+  MapPin,   // Address ke liye
+  FileText, // GSTIN ke liye
+  ChevronRight,
+  Award,
+  Users,
+  Factory,
+  Clock,
+  Star,
+  CheckCircle,
+  Send,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  ArrowUp,
+  Play,
+  Settings,
+  Shield,
+  Headphones,
+  Truck,
+  Zap
+} from 'lucide-react';
+
+// Machine Images Data
+const machineImages = [
+  {
+    id: 1,
+    url:"/images/machine1.jpeg",
+    title: "Fully Automatic Brick Machine",
+    description: "High production capacity 2000+ bricks/hour",
+    category: "Automatic",
+    features: ["PLC Controlled", "High Pressure", "Low Maintenance"]
+  },
+  {
+    id: 2,
+    url:"/images/machine2.jpeg",
+    title: "Semi-Automatic Brick Press",
+    description: "Perfect for medium-scale industries",
+    category: "Semi-Automatic",
+    features: ["Hydraulic System", "Easy Operation", "Durable"]
+  },
+  {
+    id: 3,
+    url:"/images/machine3.jpeg",
+    title: "Hydraulic Brick Machine",
+    description: "Advanced hydraulic technology",
+    category: "Hydraulic",
+    features: ["Energy Efficient", "High Output", "Precision Molds"]
+  },
+  {
+    id: 4,
+    url:"/images/machine4.jpeg",
+    title: "Clay Brick Extruder",
+    description: "Traditional clay brick manufacturing",
+    category: "Extruder",
+    features: ["Vacuum System", "Consistent Quality", "Low Waste"]
+  },
+  {
+    id: 5,
+    url:"/images/machine5.jpeg",
+    title: "Concrete Block Machine",
+    description: "Multi-size block production",
+    category: "Concrete",
+    features: ["Vibration Tech", "Quick Mould Change", "High Density"]
+  },
+   {
+    id: 6,
+    url:"/images/machine6.jpeg",
+    title: "Clay Brick Extruder",
+    description: "Traditional clay brick manufacturing",
+    category: "Extruder",
+    features: ["Vacuum System", "Consistent Quality", "Low Waste"]
+  },
+   {
+    id: 7,
+    url:"/images/machine7.jpeg",
+    title: "Clay Brick Extruder",
+    description: "Traditional clay brick manufacturing",
+    category: "Extruder",
+    features: ["Vacuum System", "Consistent Quality", "Low Waste"]
+  },
+   {
+    id: 8,
+    url:"/images/machine8.jpeg",
+    title: "Clay Brick Extruder",
+    description: "Traditional clay brick manufacturing",
+    category: "Extruder",
+    features: ["Vacuum System", "Consistent Quality", "Low Waste"]
+  },
+];
+
+// Stats Data
+const stats = [
+  { icon: Award, value: '20+', label: 'Years Experience' },
+  { icon: Users, value: '500+', label: 'Happy Clients' },
+  { icon: Factory, value: '1000+', label: 'Machines Sold' },
+  { icon: Star, value: '4.9', label: 'Customer Rating' }
+];
+
+const Landing = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
+      {/* Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-50 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+          >
+            <ArrowUp size={24} />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Navbar */}
+      <nav className="fixed w-full bg-white/90 backdrop-blur-md z-40 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center space-x-2"
+            >
+              <Factory className="h-8 w-8 text-blue-600" />
+              <div>
+                <span className="font-bold text-xl text-gray-800">HN<span className="text-blue-600">Craft India</span></span>
+                <p className="text-xs text-gray-500">Since 2004</p>
+              </div>
+            </motion.div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              {['Home', 'Products', 'Features', 'Testimonials', 'Contact'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                >
+                  {item}
+                </a>
+              ))}
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors shadow-md">
+                Get Quote
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-gray-600 hover:text-blue-600"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white border-t"
+            >
+              <div className="px-4 py-2 space-y-2">
+                {['Home', 'Products', 'Features', 'Testimonials', 'Contact'].map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    className="block py-2 text-gray-600 hover:text-blue-600 font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                ))}
+                <button className="w-full bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors">
+                  Get Quote
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Trust Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full mb-6"
+              >
+                <Zap className="h-4 w-4 mr-2" />
+                <span className="text-sm font-semibold">Trusted by 500+ Companies</span>
+              </motion.div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                <span className="block">High-Quality</span>
+                <span className="text-blue-600">Brick Making Machines</span>
+              </h1>
+              
+              <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+                Leading manufacturer of automatic and semi-automatic brick making machines with 20+ years of excellence in construction equipment industry.
+              </p>
+
+              {/* Stats Grid */}
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                {stats.map((stat, index) => {
+                  const Icon = stat.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                      className="flex items-center space-x-2"
+                    >
+                      <Icon className="h-8 w-8 text-blue-500" />
+                      <div>
+                        <div className="font-bold text-xl">{stat.value}</div>
+                        <div className="text-sm text-gray-500">{stat.label}</div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="mt-10 flex flex-wrap gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors shadow-lg flex items-center"
+                >
+                  Explore Machines <ChevronRight className="ml-2 h-5 w-5" />
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-full font-medium hover:bg-blue-50 transition-colors flex items-center"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Demo
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Right Content - Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={machineImages[0].url}
+                  alt="Featured Machine"
+                  className="w-full h-auto"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent p-6">
+                  <p className="text-white font-semibold">{machineImages[0].title}</p>
+                  <p className="text-white/80 text-sm">{machineImages[0].description}</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section id="products" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Our Products</span>
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">Premium Brick Machines</h2>
+          </motion.div>
+
+          {/* Machine Gallery */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {machineImages.map((machine, index) => (
+              <motion.div
+                key={machine.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={machine.url}
+                    alt={machine.title}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                    {machine.category}
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-gray-900 mb-1">{machine.title}</h3>
+                  <p className="text-sm text-gray-600 mb-2">{machine.description}</p>
+                  <button className="text-blue-600 font-medium text-sm hover:text-blue-700 flex items-center">
+                    View Details <ChevronRight className="h-4 w-4 ml-1" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-blue-600">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-white"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact With Us</h2>
+              <p className="text-lg text-white/90 mb-6">
+                Get in touch with us for a free consultation and quote.
+              </p>
+              
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <Phone className="h-5 w-5" />
+                  <span>+91 7037206692</span>
+                </div>
+                
+                {/* GSTIN Number - NAYA ADD KIYA */}
+                <div className="flex items-center space-x-3">
+                  <FileText className="h-5 w-5 text-white/80" />
+                  <span className="text-white/90 font-mono">GSTIN: 09ABCDE1234F1Z5</span> {/* font-mono for code style */}
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="h-5 w-5" />
+                  <span>hncraftindia@gmail</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MapPin className="h-5 w-5" />
+                  <span>HyatNagar, Sambhal, Uttar Pradesh - 244303, INDIA</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.form
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-6 rounded-2xl shadow-2xl"
+            >
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Send Enquiry</h3>
+              
+              <div className="space-y-3">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                <textarea
+                  rows={3}
+                  placeholder="Your Message"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                ></textarea>
+                
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                >
+                  <Send className="h-4 w-4" />
+                  <span>Send Message</span>
+                </button>
+              </div>
+            </motion.form>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <Factory className="h-8 w-8 text-blue-500" />
+                <span className="font-bold text-xl">HN Craft India</span>
+              </div>
+              <p className="text-gray-400 text-sm">
+                Leading manufacturer of brick making machines since 2004.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-bold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-gray-400">
+                {['About Us', 'Products', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="hover:text-blue-500 transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Products */}
+            <div>
+              <h4 className="font-bold mb-4">Products</h4>
+              <ul className="space-y-2 text-gray-400">
+                {['Automatic Machines', 'Semi-Automatic', 'Spare Parts'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="hover:text-blue-500 transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Social Links */}
+            <div>
+              <h4 className="font-bold mb-4">Follow Us</h4>
+              <div className="flex space-x-4">
+                {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="bg-gray-800 p-2 rounded-full hover:bg-blue-600 transition-colors"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2024 HN Craft India Industries. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+            onClick={() => setActiveImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="relative max-w-4xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={activeImage.url}
+                alt={activeImage.title}
+                className="w-full h-auto rounded-2xl"
+              />
+              <button
+                onClick={() => setActiveImage(null)}
+                className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default Landing;
