@@ -95,6 +95,22 @@ const machineImages = [
     category: "Extruder",
     features: ["Vacuum System", "Consistent Quality", "Low Waste"]
   },
+   {
+    id: 9,
+    url:"/images/brickmaki.jpg",
+    title: "Clay Brick Extruder",
+    description: "Traditional clay brick manufacturing",
+    category: "Extruder",
+    features: ["Vacuum System", "Consistent Quality", "Low Waste"]
+  },
+   {
+    id: 10,
+    url:"/images/logo.png",
+    title: "Clay Brick Extruder",
+    description: "Traditional clay brick manufacturing",
+    category: "Extruder",
+    features: ["Vacuum System", "Consistent Quality", "Low Waste"]
+  },
 ];
 
 // Stats Data
