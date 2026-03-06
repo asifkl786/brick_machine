@@ -437,7 +437,7 @@ const Landing = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <MapPin className="h-5 w-5" />
-                  <span>HyatNagar, Sambhal, Uttar Pradesh - 244303, INDIA</span>
+                  <span>Moh. Haji Nasirabad HyatNagar, Sambhal, Uttar Pradesh - 244303, INDIA</span>
                 </div>
               </div>
             </motion.div>
