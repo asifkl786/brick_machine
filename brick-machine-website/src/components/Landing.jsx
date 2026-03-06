@@ -429,7 +429,7 @@ const Landing = () => {
                 {/* GSTIN Number - NAYA ADD KIYA */}
                 <div className="flex items-center space-x-3">
                   <FileText className="h-5 w-5 text-white/80" />
-                  <span className="text-white/90 font-mono">GSTIN: 09ABCDE1234F1Z5</span> {/* font-mono for code style */}
+                  <span className="text-white/90 font-mono">GSTIN: 09AXMPK1223A2ZW</span> {/* font-mono for code style */}
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-5 w-5" />
