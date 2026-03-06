@@ -423,7 +423,7 @@ const Landing = () => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5" />
-                  <span>+91 7037206692</span>
+                  <span>+91 7037206692,9456453983</span>
                 </div>
                 
                 {/* GSTIN Number - NAYA ADD KIYA */}
