@@ -20,6 +20,7 @@ import {
   Twitter,
   Linkedin,
   Instagram,
+  Youtube,
   ArrowUp,
   Play,
   Settings,
@@ -120,7 +121,39 @@ const stats = [
   { icon: Factory, value: '1000+', label: 'Machines Sold' },
   { icon: Star, value: '4.9', label: 'Customer Rating' }
 ];
-
+// Stats Social 
+const socialLinks = [
+  {
+    Icon: Facebook,
+    href: "https://facebook.com/yourpage",
+    bgColor: "bg-[#1877F2]",
+    label: "Facebook"
+  },
+  {
+    Icon: Twitter,
+    href: "https://twitter.com/yourhandle", 
+    bgColor: "bg-[#1DA1F2]",
+    label: "Twitter"
+  },
+  {
+    Icon: Linkedin,
+    href: "https://linkedin.com/company/yourcompany",
+    bgColor: "bg-[#0A66C2]",
+    label: "LinkedIn"
+  },
+  {
+    Icon: Instagram,
+    href: "https://instagram.com/yourhandle",
+    bgColor: "bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737]",
+    label: "Instagram"
+  },
+  {
+    Icon: Youtube,
+    href: "https://youtube.com/@yourchannel",
+    bgColor: "bg-[#FF0000]",
+    label: "YouTube"
+  }
+];
 const Landing = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -497,10 +530,10 @@ const Landing = () => {
             </div>
 
             {/* Social Links */}
-            <div>
+            {/* <div>
               <h4 className="font-bold mb-4">Follow Us</h4>
               <div className="flex space-x-4">
-                {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
+                {[Facebook, Twitter, Linkedin, Instagram,Youtube].map((Icon, index) => (
                   <a
                     key={index}
                     href="#"
@@ -510,6 +543,23 @@ const Landing = () => {
                   </a>
                 ))}
               </div>
+            </div> */}
+            <div>
+            <h4 className="font-bold mb-4">Follow Us</h4>
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${social.bgColor} p-3 rounded-full hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl`}
+                  aria-label={social.label}
+                >
+                  <social.Icon className="h-5 w-5 text-white" />
+                </a>
+              ))}
+            </div>
             </div>
           </div>
 
