@@ -283,7 +283,7 @@ const Landing = () => {
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 <span className="block">High-Quality</span>
-                <span className="text-blue-600">Brick Making Machines</span>
+                <span className="text-blue-600">Clay Mixing Machines</span>
               </h1>
               
               <p className="mt-6 text-lg text-gray-600 leading-relaxed">
