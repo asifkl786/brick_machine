@@ -98,7 +98,7 @@ const machineImages = [
   },
    {
     id: 9,
-    url:"/images/brickmaki.jpg",
+    url:"/images/brickmak.jpg",
     title: "Clay Brick Extruder",
     description: "Traditional clay brick manufacturing",
     category: "Extruder",
