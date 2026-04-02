@@ -379,11 +379,8 @@ const Landing = () => {
 
               {/* Mobile Menu Button */}
               <button
-                onClick={() => {
-                  navigate(`/jewelry`);
-                  setIsMenuOpen(!isMenuOpen);
-
-                }}
+                onClick={() => 
+                  setIsMenuOpen(!isMenuOpen)}
                 className="md:hidden text-gray-600 hover:text-blue-600"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -435,6 +432,7 @@ const Landing = () => {
                           <div>
                             <button
                               onClick={() => {
+                                navigate(`/jewelry`);
                                 // ========== FIX: Toggle only jewelry sub-dropdown ==========
                                 setIsJewelrySubOpen(!isJewelrySubOpen);
                                 // ========== FIX: Close machinery when opening jewelry ==========
