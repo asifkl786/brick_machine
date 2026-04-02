@@ -379,7 +379,11 @@ const Landing = () => {
 
               {/* Mobile Menu Button */}
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={() => {
+                  navigate(`/jewelry`);
+                  setIsMenuOpen(!isMenuOpen);
+
+                }}
                 className="md:hidden text-gray-600 hover:text-blue-600"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
