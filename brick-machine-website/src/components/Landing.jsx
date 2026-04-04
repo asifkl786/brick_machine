@@ -503,7 +503,13 @@ const Landing = () => {
                   </div>
                   
                   {/* Other Links */}
-                  <a href="#features" className="block py-2 text-gray-600 hover:text-blue-600 font-medium" onClick={() => setIsMenuOpen(false)}>Features</a>
+                  <a href="#features" className="block py-2 text-gray-600 hover:text-blue-600 font-medium" 
+                     onClick={() => {
+                        navigate(`/jewelry`)
+                        setIsMenuOpen(false)}}
+                     >
+                      Jewelry
+                  </a>
                   <a href="#testimonials" className="block py-2 text-gray-600 hover:text-blue-600 font-medium" onClick={() => setIsMenuOpen(false)}>Testimonials</a>
                   <a href="#contact" className="block py-2 text-gray-600 hover:text-blue-600 font-medium" onClick={() => setIsMenuOpen(false)}>Contact</a>
                   
